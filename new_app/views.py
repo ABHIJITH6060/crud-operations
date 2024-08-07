@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 from new_app.forms import FurnitureForms
 from new_app.models import furniture
@@ -24,3 +24,21 @@ def submit(request):
 def  Furniture_view(request):
     data = furniture.objects.all()
     return render(request, 'view_data.html', {'data':data})
+
+def Furniture_delete(request,id):
+    data=furniture.objects.get(id=id)
+    data.delete()
+    return redirect("Furniture_view")
+
+
+
+def Furniture_update(request,id):
+    data=furniture.objects.get(id=id)
+    form=FurnitureForms(request.POST,instance=data)
+    if request.method == 'POST':
+        data=FurnitureForms(request.POST,instance=data)
+        if data.is_valid():
+            data.save()
+            return redirect("Furniture_view")
+    return render(request, 'update.html', {'form':form})
+
