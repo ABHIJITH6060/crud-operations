@@ -15,5 +15,12 @@ def  dash(request):
 
 def submit(request):
     form = FurnitureForms()
+    if request.method == 'POST':
+        data=FurnitureForms(request.POST)
+        if data.is_valid():
+            data.save()
     return render(request, 'submit.html', {'form': form})
 
+def  Furniture_view(request):
+    data = furniture.objects.all()
+    return render(request, 'view_data.html', {'data':data})

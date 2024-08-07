@@ -1,0 +1,26 @@
+{% extends 'dash.html' %}
+{% block content %}
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">slno</th>
+      <th scope="col">name</th>
+      <th scope="col">price</th>
+      <th scope="col">type</th>
+      <th scope="col">details</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for i in data %}
+    <tr>
+      <th scope="row">{{forloop.counter}}</th>
+      <td>{{i.Name}}</td>
+       <td>{{i.Price}}</td>
+       <td>{{i.Types}}</td>
+       <td>{{i.Details}}</td>
+    </tr>
+  </tbody>
+
+    {% endfor %}
+</table>
+{% endblock %}
